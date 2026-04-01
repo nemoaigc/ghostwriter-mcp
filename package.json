@@ -1,0 +1,12 @@
+{
+  "name": "ghostwriter-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Ghostwriter — a Notion Custom Agent that scans X/Twitter, generates posts, and learns from edits",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
