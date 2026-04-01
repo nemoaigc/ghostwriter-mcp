@@ -463,36 +463,6 @@ export default {
       return new Response(null, { status: 202, headers: corsHeaders });
     }
 
-    // Debug endpoint
-    if (url.pathname === "/debug" && request.method === "GET") {
-      const screen = url.searchParams.get("user") || "karpathy";
-      try {
-        const userId = await getUserId(screen, env);
-        const variables = {
-          userId,
-          count: 3,
-          includePromotedContent: false,
-          withQuickPromoteEligibilityTweetFields: false,
-          withVoice: false,
-          withV2Timeline: true,
-        };
-        const params = new URLSearchParams({
-          variables: JSON.stringify(variables),
-          features: JSON.stringify(FEATURES),
-        });
-        const apiUrl = `${GRAPHQL_BASE}/${QUERY_IDS.UserTweets}/UserTweets?${params}`;
-        const resp = await fetch(apiUrl, { headers: twitterHeaders(env) });
-        const data = await resp.json();
-        return new Response(JSON.stringify({ userId, status: resp.status, data }, null, 2), {
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        });
-      } catch (e) {
-        return new Response(JSON.stringify({ error: e.message }), {
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        });
-      }
-    }
-
     return new Response("Ghostwriter MCP", { status: 200, headers: corsHeaders });
   }
 };
