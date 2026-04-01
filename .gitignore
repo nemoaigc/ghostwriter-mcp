@@ -3,3 +3,5 @@ node_modules/
 .venv/
 __pycache__/
 *.log
+package-lock.json
+post-server.py
